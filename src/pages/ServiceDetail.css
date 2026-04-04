@@ -1,0 +1,313 @@
+/* ===== Service Detail Pages — Shared Styles ===== */
+
+/* Hero */
+.sd-hero {
+  position: relative;
+  padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-3xl);
+  text-align: center;
+  overflow: hidden;
+}
+
+.sd-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.sd-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  filter: blur(2px);
+}
+
+.sd-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(10,10,15,0.4) 0%, var(--bg-primary) 75%);
+  z-index: 1;
+}
+
+.sd-hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  animation: fadeInUp 0.8s ease;
+}
+
+.sd-hero__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: white;
+  animation: scaleIn 0.6s ease 0.2s both;
+}
+
+.sd-hero__icon--blue {
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-400));
+  box-shadow: 0 0 40px rgba(41, 128, 185, 0.4);
+}
+
+.sd-hero__icon--orange {
+  background: linear-gradient(135deg, var(--orange-600), var(--orange-400));
+  box-shadow: 0 0 40px rgba(232, 83, 30, 0.4);
+}
+
+.sd-hero__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.sd-hero__desc {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 700px;
+  line-height: 1.9;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+/* Stats Bar */
+.sd-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2xl);
+  padding: var(--space-xl) 0;
+  margin: var(--space-2xl) 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  animation: fadeInUp 0.8s ease 0.5s both;
+}
+
+.sd-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.sd-stat__number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sd-stat__label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Sub-Services Section */
+.sd-section {
+  padding: var(--space-4xl) 0;
+}
+
+.sd-section__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.sd-section__title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+}
+
+.sd-section__subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Sub-Service Cards Grid */
+.sd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.sd-grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Sub-Service Card */
+.sd-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  animation: fadeInUp 0.6s ease both;
+}
+
+.sd-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(41, 128, 185, 0.3);
+  box-shadow: var(--shadow-xl), var(--shadow-glow-blue);
+}
+
+.sd-card__image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.sd-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.sd-card:hover .sd-card__image img {
+  transform: scale(1.08);
+}
+
+.sd-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%);
+}
+
+.sd-card__body {
+  padding: var(--space-lg) var(--space-xl) var(--space-xl);
+}
+
+.sd-card__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.sd-card__title-icon {
+  color: var(--blue-400);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.sd-card__title-icon--orange {
+  color: var(--orange-500);
+}
+
+.sd-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* CTA Section */
+.sd-cta {
+  text-align: center;
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.sd-cta__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(41, 128, 185, 0.08) 0%, transparent 60%);
+}
+
+.sd-cta__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.sd-cta__title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+}
+
+.sd-cta__subtitle {
+  color: var(--text-secondary);
+  max-width: 500px;
+  font-size: 1.05rem;
+}
+
+/* Back Link */
+.sd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-xl);
+  transition: color var(--transition-fast);
+  text-decoration: none;
+}
+
+.sd-back:hover {
+  color: var(--blue-400);
+}
+
+[dir='rtl'] .sd-back svg {
+  transform: scaleX(-1);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .sd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sd-hero {
+    padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
+  }
+
+  .sd-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sd-grid--2col {
+    grid-template-columns: 1fr;
+  }
+
+  .sd-stats {
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+
+  .sd-section {
+    padding: var(--space-3xl) 0;
+  }
+
+  .sd-card__image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sd-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+}

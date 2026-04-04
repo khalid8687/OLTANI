@@ -88,9 +88,179 @@ const translations = {
           'Infrastructure setup & company founding',
           'Performance optimization & monitoring',
           'Global deployment capability',
+          'Branch interconnection',
+          'VoIP solutions',
+          'Cyber security',
+          'Domain environments',
+          'Backup systems',
         ],
       },
       cta: 'Get Started',
+      backToServices: 'Back to Services',
+    },
+    serviceDetails: {
+      ctaTitle: 'Ready to Get Started?',
+      ctaSubtitle: 'Contact us today and let\'s discuss how we can help your business grow.',
+      ctaBtn: 'Contact Us on WhatsApp',
+      exploreTitle: 'What We Offer',
+      exploreSubtitle: 'Explore our comprehensive range of solutions',
+      video: {
+        heroDesc: 'We craft stunning, high-quality promotional and content videos using cutting-edge AI technology. From viral social media content to professional corporate videos and 3D animation — we bring your vision to life with modern, stylish production at prices that fit every budget.',
+        items: [
+          {
+            title: 'Corporate Promotional Videos',
+            desc: 'High-quality, cinematic promotional videos that showcase your brand, products, and services. Perfect for company profiles, product launches, and investor presentations with professional-grade production quality.',
+          },
+          {
+            title: 'Viral Social Media Content',
+            desc: 'Eye-catching, trend-driven video content designed to go viral across social platforms. We create engaging content that captures attention, drives shares, and significantly boosts your brand visibility online.',
+          },
+          {
+            title: '3D Animation & Cartoon',
+            desc: 'Custom 3D animation and cartoon production for explainer videos, product visualizations, and creative storytelling. Our AI-enhanced pipeline delivers stunning animated content faster than traditional studios.',
+          },
+          {
+            title: 'Reels & Short-Form Content',
+            desc: 'High-impact vertical video content optimized for Instagram Reels, TikTok, YouTube Shorts, and Facebook Stories. Fast-paced, engaging content that drives maximum audience interaction and follower growth.',
+          },
+        ],
+      },
+      software: {
+        heroDesc: 'From enterprise-grade CRM and ERP systems to specialized solutions for clinics, restaurants, cafés, and supermarkets — we build the software that powers your business. Our AI agents respond intelligently across WhatsApp, Messenger, and all social platforms.',
+        items: [
+          {
+            title: 'CRM & ERP Systems',
+            desc: 'Enterprise-grade Customer Relationship Management and Enterprise Resource Planning systems. Streamline your sales pipeline, manage customer data, track inventory, and optimize your entire business workflow from a single unified platform.',
+          },
+          {
+            title: 'Financial & Accounting Software',
+            desc: 'Complete financial management solutions including invoicing, expense tracking, tax calculations, balance sheets, and profit/loss reporting. Built for compliance with local regulations and designed for businesses of any size.',
+          },
+          {
+            title: 'Clinic & Healthcare Management',
+            desc: 'Comprehensive healthcare management systems featuring patient records, appointment scheduling, medical charts, prescription management, and billing. HIPAA-compliant solutions designed for clinics, hospitals, and medical practices.',
+          },
+          {
+            title: 'Restaurant & Café POS Systems',
+            desc: 'Modern point-of-sale systems with intuitive touchscreen interfaces, menu management, order tracking, table layouts, kitchen display systems, and integrated payment processing for restaurants, cafés, and food service businesses.',
+          },
+          {
+            title: 'Retail & Supermarket Solutions',
+            desc: 'Full-featured retail management with barcode scanning, inventory tracking, product catalogs, sales analytics, stock management, supplier ordering, and multi-branch support for retail stores and supermarkets.',
+          },
+          {
+            title: 'AI Chatbots — WhatsApp, Messenger & More',
+            desc: 'Intelligent AI-powered chatbots that handle customer inquiries, process orders, and provide 24/7 support across WhatsApp, Facebook Messenger, Instagram, and your website. Trained on your business data for accurate, personalized responses.',
+          },
+        ],
+      },
+      social: {
+        heroDesc: 'We build and manage powerful social media presences for businesses. From page creation and content strategy to advertising campaigns that drive massive follower growth and significantly boost sales across all major platforms.',
+        items: [
+          {
+            title: 'Page Creation & Branding',
+            desc: 'Professional social media page setup with complete brand identity — including logo design, cover photos, bio optimization, and consistent visual branding across Facebook, Instagram, LinkedIn, X (Twitter), and all major platforms.',
+          },
+          {
+            title: 'Content Strategy & Calendar',
+            desc: 'Data-driven content strategy with detailed editorial calendars, content pillars, posting schedules, and creative themes. We plan and create engaging content that aligns with your brand goals and resonates with your target audience.',
+          },
+          {
+            title: 'Targeted Advertising Campaigns',
+            desc: 'Strategic paid advertising campaigns with precision audience targeting, A/B testing, retargeting, and conversion optimization. We maximize your ad spend ROI across Facebook Ads, Instagram Ads, and Google Ads.',
+          },
+          {
+            title: 'Follower Growth — Facebook & Instagram',
+            desc: 'Organic and strategic follower growth strategies that build authentic, engaged communities around your brand. We use proven techniques to attract real followers who become loyal customers and brand advocates.',
+          },
+          {
+            title: 'Analytics & Performance Reporting',
+            desc: 'Comprehensive analytics dashboards with detailed metrics on engagement rates, reach, impressions, follower demographics, and content performance. Monthly reports with actionable insights and data-driven recommendations.',
+          },
+          {
+            title: 'Sales-Driven Social Marketing',
+            desc: 'Social media strategies specifically designed to drive sales and revenue. From social commerce integration to lead generation funnels, we turn your social media presence into a powerful sales channel.',
+          },
+        ],
+      },
+      integration: {
+        heroDesc: 'We connect businesses together. Any service your company needs can be seamlessly integrated with other companies or existing software systems across any sector — creating a unified, efficient digital ecosystem that drives productivity.',
+        items: [
+          {
+            title: 'Cross-Company Service Integration',
+            desc: 'Seamlessly connect your business systems with those of partners, suppliers, and clients. We build bridges between organizations, enabling real-time data exchange, automated workflows, and unified service delivery.',
+          },
+          {
+            title: 'API Development & Third-Party Linking',
+            desc: 'Custom API development and third-party integration services. We build robust, secure APIs and connect your systems with payment gateways, shipping providers, CRMs, ERPs, and any external service your business needs.',
+          },
+          {
+            title: 'System Migration & Data Unification',
+            desc: 'Smooth transition from legacy systems to modern platforms with zero data loss. We handle complete system migrations, data cleaning, format conversion, and ensure seamless continuity during the transition process.',
+          },
+          {
+            title: 'Multi-Platform Synchronization',
+            desc: 'Real-time data synchronization across multiple platforms and devices. Keep your desktop, mobile, web, and cloud applications perfectly in sync with automated conflict resolution and guaranteed data consistency.',
+          },
+          {
+            title: 'Custom Middleware Solutions',
+            desc: 'Bespoke middleware that connects disparate systems and applications. Our custom middleware handles message queuing, data transformation, protocol translation, and service orchestration for complex enterprise environments.',
+          },
+          {
+            title: 'Industry-Agnostic Integration',
+            desc: 'Integration solutions that work across all industries — healthcare, finance, retail, manufacturing, education, and more. We understand sector-specific requirements and tailor our integration approach accordingly.',
+          },
+        ],
+      },
+      network: {
+        heroDesc: 'Complete networking and IT infrastructure solutions including hardware and software setup, branch connectivity, VoIP, cyber security, and company infrastructure setup from the ground up — for any business, in any country, across any sector.',
+        items: [
+          {
+            title: 'Network Design & Implementation',
+            desc: 'End-to-end network architecture design and deployment. We plan and implement scalable, secure network topologies with structured cabling, switching, routing, and wireless solutions tailored to your business requirements.',
+          },
+          {
+            title: 'Hardware & Software Deployment',
+            desc: 'Professional deployment of servers, workstations, networking equipment, and enterprise software. From rack installation in data centers to desktop configuration, we handle the complete technology stack.',
+          },
+          {
+            title: 'Branch Office Connectivity',
+            desc: 'Reliable, high-speed connections between your headquarters and branch offices. We implement site-to-site VPNs, SD-WAN solutions, and dedicated links to ensure seamless communication across all locations.',
+          },
+          {
+            title: 'Infrastructure Setup & Company Founding',
+            desc: 'Complete IT infrastructure setup for new companies and office expansions. From server rooms and network racks to workstation deployment and communication systems — we build your technology foundation from scratch.',
+          },
+          {
+            title: 'Performance Optimization & Monitoring',
+            desc: '24/7 network monitoring, performance optimization, and proactive maintenance. Our NOC-style monitoring identifies and resolves issues before they impact your business, ensuring maximum uptime and speed.',
+          },
+          {
+            title: 'Global Deployment Capability',
+            desc: 'International IT infrastructure deployment across any country. We handle logistics, local regulations, vendor management, and on-site installation to establish your technology presence anywhere in the world.',
+          },
+          {
+            title: 'Branch Interconnection',
+            desc: 'Advanced branch interconnection solutions including MPLS networks, SD-WAN architecture, and centralized management. We create unified networks that connect all your branches with enterprise-grade reliability and performance.',
+          },
+          {
+            title: 'VoIP Solutions',
+            desc: 'Modern Voice over IP telephony systems including cloud PBX, IP phone deployment, video conferencing, call routing, and unified communications. Reduce costs while upgrading your business communication infrastructure.',
+          },
+          {
+            title: 'Cyber Security',
+            desc: 'Comprehensive cybersecurity solutions including firewalls, intrusion detection, endpoint protection, security audits, penetration testing, and employee security training. Protect your business from digital threats.',
+          },
+          {
+            title: 'Domain Environments',
+            desc: 'Active Directory and domain environment setup, DNS management, SSL certificates, web hosting configuration, and domain registration services. Complete domain infrastructure management for your organization.',
+          },
+          {
+            title: 'Backup Systems',
+            desc: 'Enterprise-grade backup and disaster recovery solutions. Automated backups to cloud and on-premise storage, data replication, point-in-time recovery, and comprehensive business continuity planning.',
+          },
+        ],
+      },
     },
     about: {
       pageTitle: 'About OLTANI',
@@ -231,9 +401,179 @@ const translations = {
           'تأسيس البنية التحتية وإنشاء الشركات',
           'تحسين الأداء والمراقبة',
           'قدرة نشر عالمية',
+          'ربط فروع الشركات',
+          'حلول VoIP',
+          'الأمن السيبراني',
+          'بيئات النطاقات',
+          'أنظمة النسخ الاحتياطي',
         ],
       },
       cta: 'ابدأ الآن',
+      backToServices: 'العودة للخدمات',
+    },
+    serviceDetails: {
+      ctaTitle: 'جاهز للبدء؟',
+      ctaSubtitle: 'تواصل معنا اليوم ودعنا نناقش كيف يمكننا مساعدة عملك على النمو.',
+      ctaBtn: 'تواصل معنا على واتساب',
+      exploreTitle: 'ما نقدمه',
+      exploreSubtitle: 'استكشف مجموعتنا الشاملة من الحلول',
+      video: {
+        heroDesc: 'نصنع فيديوهات ترويجية ومحتوى عالي الجودة باستخدام أحدث تقنيات الذكاء الاصطناعي. من المحتوى الفيروسي على السوشيال ميديا إلى الفيديوهات المؤسسية الاحترافية والأنيميشن ثلاثي الأبعاد — نحول رؤيتك إلى حقيقة بإنتاج عصري وأنيق بأسعار تناسب كل الميزانيات.',
+        items: [
+          {
+            title: 'فيديوهات ترويجية للشركات',
+            desc: 'فيديوهات ترويجية عالية الجودة بأسلوب سينمائي تعرض علامتك التجارية ومنتجاتك وخدماتك. مثالية لملفات الشركات وإطلاق المنتجات والعروض التقديمية للمستثمرين بجودة إنتاج احترافية.',
+          },
+          {
+            title: 'محتوى فيروسي للسوشيال ميديا',
+            desc: 'محتوى فيديو لافت يتبع أحدث التريندات مصمم للانتشار عبر منصات التواصل. نصنع محتوى جذاب يلفت الانتباه ويحقق مشاركات واسعة ويعزز ظهور علامتك التجارية بشكل كبير.',
+          },
+          {
+            title: 'أنيميشن ثلاثي الأبعاد وكارتون',
+            desc: 'إنتاج أنيميشن ثلاثي الأبعاد وكارتون مخصص لفيديوهات الشرح وتصور المنتجات والسرد القصصي الإبداعي. خط إنتاجنا المعزز بالذكاء الاصطناعي يقدم محتوى متحرك مذهل أسرع من الاستوديوهات التقليدية.',
+          },
+          {
+            title: 'ريلز ومحتوى قصير',
+            desc: 'محتوى فيديو عمودي عالي التأثير محسّن لريلز إنستقرام وتيك توك ويوتيوب شورتس وقصص فيسبوك. محتوى سريع وجذاب يحقق أقصى تفاعل من الجمهور ونمو في المتابعين.',
+          },
+        ],
+      },
+      software: {
+        heroDesc: 'من أنظمة CRM و ERP على مستوى المؤسسات إلى حلول متخصصة للعيادات والمطاعم والكافيهات والسوبر ماركت — نبني البرمجيات التي تدير أعمالك. ووكلاء الذكاء الاصطناعي يردون بذكاء عبر واتساب وماسنجر وجميع المنصات.',
+        items: [
+          {
+            title: 'أنظمة CRM و ERP',
+            desc: 'أنظمة إدارة علاقات العملاء وتخطيط موارد المؤسسات على مستوى المؤسسات. بسّط خط أنابيب مبيعاتك، وأدر بيانات العملاء، وتتبع المخزون، وحسّن سير عمل أعمالك بالكامل من منصة موحدة واحدة.',
+          },
+          {
+            title: 'برامج مالية ومحاسبية',
+            desc: 'حلول إدارة مالية متكاملة تشمل الفواتير وتتبع المصروفات وحسابات الضرائب والميزانيات العمومية وتقارير الأرباح والخسائر. مبنية للتوافق مع اللوائح المحلية ومصممة للشركات من أي حجم.',
+          },
+          {
+            title: 'إدارة العيادات والرعاية الصحية',
+            desc: 'أنظمة إدارة صحية شاملة تتضمن سجلات المرضى وجدولة المواعيد والسجلات الطبية وإدارة الوصفات والفوترة. حلول متوافقة مصممة للعيادات والمستشفيات والممارسات الطبية.',
+          },
+          {
+            title: 'أنظمة نقاط بيع للمطاعم والكافيهات',
+            desc: 'أنظمة نقاط بيع حديثة بواجهات شاشة لمس بديهية وإدارة قوائم الطعام وتتبع الطلبات ومخططات الطاولات وشاشات المطبخ ومعالجة دفع متكاملة للمطاعم والكافيهات وأعمال خدمات الطعام.',
+          },
+          {
+            title: 'حلول التجزئة والسوبر ماركت',
+            desc: 'إدارة تجزئة كاملة المميزات مع مسح الباركود وتتبع المخزون وكتالوجات المنتجات وتحليلات المبيعات وإدارة المخزون وطلبات الموردين ودعم الفروع المتعددة لمتاجر التجزئة والسوبر ماركت.',
+          },
+          {
+            title: 'شات بوتات ذكية — واتساب وماسنجر والمزيد',
+            desc: 'شات بوتات ذكية مدعومة بالذكاء الاصطناعي تتعامل مع استفسارات العملاء وتعالج الطلبات وتوفر دعم على مدار الساعة عبر واتساب وفيسبوك ماسنجر وإنستقرام وموقعك الإلكتروني. مدربة على بيانات عملك لردود دقيقة ومخصصة.',
+          },
+        ],
+      },
+      social: {
+        heroDesc: 'نبني وندير حضوراً قوياً على وسائل التواصل الاجتماعي للشركات. من إنشاء الصفحات واستراتيجية المحتوى إلى حملات إعلانية تحقق نمواً هائلاً في المتابعين وزيادة كبيرة في المبيعات عبر جميع المنصات الرئيسية.',
+        items: [
+          {
+            title: 'إنشاء الصفحات وبناء الهوية',
+            desc: 'إعداد صفحات سوشيال ميديا احترافية بهوية بصرية كاملة — تشمل تصميم الشعار وصور الغلاف وتحسين النبذة التعريفية وعلامة بصرية متسقة عبر فيسبوك وإنستقرام ولينكدإن وX وجميع المنصات الرئيسية.',
+          },
+          {
+            title: 'استراتيجية المحتوى والتقويم',
+            desc: 'استراتيجية محتوى مبنية على البيانات مع تقويمات تحريرية مفصلة وأعمدة المحتوى وجداول النشر والأفكار الإبداعية. نخطط ونصنع محتوى جذاب يتماشى مع أهداف علامتك التجارية ويصل لجمهورك المستهدف.',
+          },
+          {
+            title: 'حملات إعلانية مستهدفة',
+            desc: 'حملات إعلانية مدفوعة استراتيجية مع استهداف جمهور دقيق واختبار A/B وإعادة استهداف وتحسين التحويل. نعظّم عائد إنفاقك الإعلاني عبر فيسبوك وإنستقرام وجوجل.',
+          },
+          {
+            title: 'زيادة المتابعين — فيسبوك وإنستقرام',
+            desc: 'استراتيجيات نمو متابعين عضوية واستراتيجية تبني مجتمعات حقيقية ومتفاعلة حول علامتك التجارية. نستخدم تقنيات مجربة لجذب متابعين حقيقيين يصبحون عملاء مخلصين وسفراء لعلامتك.',
+          },
+          {
+            title: 'تحليلات وتقارير الأداء',
+            desc: 'لوحات تحليلات شاملة مع مقاييس مفصلة عن معدلات التفاعل والوصول والمشاهدات وديموغرافيات المتابعين وأداء المحتوى. تقارير شهرية مع رؤى قابلة للتنفيذ وتوصيات مبنية على البيانات.',
+          },
+          {
+            title: 'تسويق سوشيال مدفوع بالمبيعات',
+            desc: 'استراتيجيات سوشيال ميديا مصممة خصيصاً لدفع المبيعات والإيرادات. من تكامل التجارة الاجتماعية إلى قمع توليد العملاء المحتملين، نحول حضورك على السوشيال ميديا إلى قناة مبيعات قوية.',
+          },
+        ],
+      },
+      integration: {
+        heroDesc: 'نربط الشركات ببعضها. أي خدمة تحتاجها شركتك يمكن دمجها بسلاسة مع شركات أخرى أو أنظمة برمجية موجودة عبر أي قطاع — لخلق نظام رقمي موحد وفعال يعزز الإنتاجية.',
+        items: [
+          {
+            title: 'تكامل الخدمات بين الشركات',
+            desc: 'ربط أنظمة أعمالك مع الشركاء والموردين والعملاء بسلاسة. نبني جسوراً بين المؤسسات تتيح تبادل البيانات في الوقت الفعلي وسير عمل آلي وتقديم خدمات موحد.',
+          },
+          {
+            title: 'تطوير APIs وربط الأنظمة الخارجية',
+            desc: 'تطوير APIs مخصصة وخدمات تكامل خارجية. نبني APIs قوية وآمنة ونربط أنظمتك ببوابات الدفع وشركات الشحن وأنظمة CRM و ERP وأي خدمة خارجية يحتاجها عملك.',
+          },
+          {
+            title: 'ترحيل الأنظمة وتوحيد البيانات',
+            desc: 'انتقال سلس من الأنظمة القديمة إلى المنصات الحديثة بدون فقدان بيانات. نتولى ترحيل الأنظمة بالكامل وتنظيف البيانات وتحويل التنسيقات وضمان استمرارية سلسة أثناء عملية الانتقال.',
+          },
+          {
+            title: 'مزامنة المنصات المتعددة',
+            desc: 'مزامنة بيانات في الوقت الفعلي عبر منصات وأجهزة متعددة. حافظ على مزامنة تطبيقات سطح المكتب والجوال والويب والسحابة مع حل النزاعات التلقائي وضمان تناسق البيانات.',
+          },
+          {
+            title: 'حلول وسيطة مخصصة',
+            desc: 'حلول وسيطة مخصصة تربط الأنظمة والتطبيقات المتباينة. برمجياتنا الوسيطة تتعامل مع صفوف الرسائل وتحويل البيانات وترجمة البروتوكولات وتنسيق الخدمات لبيئات المؤسسات المعقدة.',
+          },
+          {
+            title: 'تكامل شامل لكل القطاعات',
+            desc: 'حلول تكامل تعمل عبر جميع الصناعات — الرعاية الصحية والمالية والتجزئة والتصنيع والتعليم والمزيد. نفهم المتطلبات الخاصة بكل قطاع ونخصص نهج التكامل وفقاً لذلك.',
+          },
+        ],
+      },
+      network: {
+        heroDesc: 'حلول شبكات وبنية تحتية تقنية متكاملة تشمل إعداد الهاردوير والسوفت وير وربط الفروع وحلول VoIP والأمن السيبراني وتأسيس البنية التحتية للشركات من الصفر — لأي شركة، في أي بلد، عبر أي قطاع.',
+        items: [
+          {
+            title: 'تصميم وتنفيذ الشبكات',
+            desc: 'تصميم ونشر هندسة شبكات شاملة من البداية إلى النهاية. نخطط وننفذ طوبولوجيات شبكات قابلة للتوسع وآمنة مع كابلات منظمة وحلول تحويل وتوجيه ولاسلكية مخصصة لمتطلبات عملك.',
+          },
+          {
+            title: 'نشر الأجهزة والبرمجيات',
+            desc: 'نشر احترافي للخوادم ومحطات العمل ومعدات الشبكات والبرمجيات المؤسسية. من تركيب الرفوف في مراكز البيانات إلى تهيئة أجهزة سطح المكتب، نتولى حزمة التكنولوجيا الكاملة.',
+          },
+          {
+            title: 'ربط الفروع والمكاتب',
+            desc: 'اتصالات موثوقة وعالية السرعة بين المقر الرئيسي والفروع. ننفذ شبكات VPN بين المواقع وحلول SD-WAN وروابط مخصصة لضمان اتصال سلس عبر جميع المواقع.',
+          },
+          {
+            title: 'تأسيس البنية التحتية وإنشاء الشركات',
+            desc: 'إعداد بنية تحتية تقنية كاملة للشركات الجديدة وتوسعات المكاتب. من غرف الخوادم ورفوف الشبكات إلى نشر محطات العمل وأنظمة الاتصالات — نبني أساسك التكنولوجي من الصفر.',
+          },
+          {
+            title: 'تحسين الأداء والمراقبة',
+            desc: 'مراقبة شبكات على مدار الساعة وتحسين الأداء والصيانة الاستباقية. مراقبتنا بأسلوب NOC تحدد المشاكل وتحلها قبل أن تؤثر على عملك، مما يضمن أقصى وقت تشغيل وسرعة.',
+          },
+          {
+            title: 'قدرة نشر عالمية',
+            desc: 'نشر بنية تحتية تقنية دولي في أي بلد. نتعامل مع اللوجستيات واللوائح المحلية وإدارة الموردين والتركيب الميداني لتأسيس حضورك التكنولوجي في أي مكان في العالم.',
+          },
+          {
+            title: 'ربط فروع الشركات',
+            desc: 'حلول ربط فروع متقدمة تشمل شبكات MPLS وهندسة SD-WAN وإدارة مركزية. ننشئ شبكات موحدة تربط جميع فروعك بموثوقية وأداء على مستوى المؤسسات.',
+          },
+          {
+            title: 'حلول VoIP',
+            desc: 'أنظمة هاتف VoIP حديثة تشمل PBX سحابي ونشر هواتف IP ومؤتمرات فيديو وتوجيه المكالمات واتصالات موحدة. خفّض التكاليف مع ترقية بنية الاتصالات التحتية لعملك.',
+          },
+          {
+            title: 'الأمن السيبراني',
+            desc: 'حلول أمن سيبراني شاملة تشمل جدران الحماية واكتشاف التسلل وحماية نقاط النهاية وتدقيق الأمن واختبار الاختراق وتدريب الموظفين على الأمان. احمِ عملك من التهديدات الرقمية.',
+          },
+          {
+            title: 'بيئات النطاقات',
+            desc: 'إعداد Active Directory وبيئات النطاقات وإدارة DNS وشهادات SSL وتهيئة استضافة الويب وخدمات تسجيل النطاقات. إدارة شاملة للبنية التحتية للنطاقات لمؤسستك.',
+          },
+          {
+            title: 'أنظمة النسخ الاحتياطي',
+            desc: 'حلول نسخ احتياطي واستعادة كوارث على مستوى المؤسسات. نسخ احتياطي تلقائي للتخزين السحابي والمحلي ونسخ البيانات واستعادة نقطة زمنية وتخطيط شامل لاستمرارية الأعمال.',
+          },
+        ],
+      },
     },
     about: {
       pageTitle: 'عن OLTANI',
@@ -254,7 +594,7 @@ const translations = {
     },
     leda: {
       pageTitle: 'سفيرة العلامة التجارية',
-      name: 'ليدا هانم',
+      name: 'ليدا',
       role: 'سفيرة OLTANI الرسمية',
       desc: 'نفخر بالشراكة مع ليدا — شخصية عامة بارزة — كسفيرة رسمية لعلامتنا التجارية. ثقتها في OLTANI تعكس التزامنا بالتميز وقدرتنا على تقديم خدمات ذكاء اصطناعي عالمية المستوى للشركات بكل أحجامها.',
       quote: '"OLTANI تغير طريقة تفكير الشركات في التكنولوجيا. حلول الذكاء الاصطناعي الخاصة بهم ليست مبهرة فحسب — بل ضرورية لأي شركة تريد الريادة في عالم اليوم الرقمي."',

@@ -106,8 +106,10 @@ export default function Home() {
           </div>
 
           <div className="home-services__grid">
-            {services.map((s, i) => (
-              <Link to="/services" key={i} className="home-service-card" style={{ animationDelay: `${i * 0.15}s` }}>
+            {services.map((s, i) => {
+              const routes = ['/services/video-production', '/services/software', '/services/social-media', '/services/integration', '/services/network'];
+              return (
+              <Link to={routes[i]} key={i} className="home-service-card" style={{ animationDelay: `${i * 0.15}s` }}>
                 <div className="home-service-card__image">
                   <img src={s.image} alt={s.title} />
                   <div className="home-service-card__image-overlay" />
@@ -118,7 +120,8 @@ export default function Home() {
                   <p className="home-service-card__desc">{s.desc}</p>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
 
           <div className="home-services__cta">

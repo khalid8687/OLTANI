@@ -1,12 +1,21 @@
+import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { FaVideo, FaLaptopCode, FaBullhorn, FaNetworkWired, FaServer, FaWhatsapp } from 'react-icons/fa';
-import { HiCheckCircle } from 'react-icons/hi';
+import { HiCheckCircle, HiArrowRight } from 'react-icons/hi';
 import serviceVideo from '../assets/service-video.png';
 import serviceSoftware from '../assets/service-software.png';
 import serviceSocial from '../assets/service-social.png';
 import serviceIntegration from '../assets/service-integration.png';
 import serviceNetwork from '../assets/service-network.png';
 import './Services.css';
+
+const serviceRoutes = [
+  '/services/video-production',
+  '/services/software',
+  '/services/social-media',
+  '/services/integration',
+  '/services/network',
+];
 
 export default function Services() {
   const { t, lang } = useLang();
@@ -66,7 +75,7 @@ export default function Services() {
                 <p className="service-section__desc">{service.desc}</p>
 
                 <div className="service-section__features">
-                  {service.features.map((f, j) => (
+                  {service.features.slice(0, 6).map((f, j) => (
                     <div key={j} className="service-section__feature">
                       <HiCheckCircle className={`service-section__check service-section__check--${service.accent}`} />
                       <span>{f}</span>
@@ -74,15 +83,24 @@ export default function Services() {
                   ))}
                 </div>
 
-                <a
-                  href="https://wa.me/201002194451"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary service-section__cta"
-                >
-                  <FaWhatsapp />
-                  {t.services.cta}
-                </a>
+                <div className="service-section__actions">
+                  <Link
+                    to={serviceRoutes[i]}
+                    className={`btn ${service.accent === 'blue' ? 'btn-primary' : 'btn-primary'} service-section__cta`}
+                  >
+                    {lang === 'ar' ? 'اكتشف المزيد' : 'Learn More'}
+                    <HiArrowRight className={lang === 'ar' ? 'flip-icon' : ''} />
+                  </Link>
+                  <a
+                    href="https://wa.me/201002194451"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-whatsapp service-section__cta"
+                  >
+                    <FaWhatsapp />
+                    {t.services.cta}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
