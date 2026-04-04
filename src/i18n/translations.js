@@ -111,7 +111,7 @@ const translations = {
     },
     leda: {
       pageTitle: 'Brand Ambassador',
-      name: 'Leda Hanem',
+      name: 'Leda',
       role: 'Official OLTANI Brand Ambassador',
       desc: 'We are proud to partner with Leda — a prominent public figure — as our official brand ambassador. Her trust in OLTANI reflects our commitment to excellence and our ability to deliver world-class AI-powered services to businesses of all sizes.',
       quote: '"OLTANI transforms the way businesses think about technology. Their AI solutions are not just impressive — they\'re essential for any company that wants to lead in today\'s digital world."',
