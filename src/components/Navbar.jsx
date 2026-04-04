@@ -36,10 +36,6 @@ export default function Navbar() {
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" id="nav-logo">
           <TransparentLogo src={logo} alt="OLTANI" />
-          <span className="navbar__logo-text">
-            <span className="text-blue">OLT</span>
-            <span className="text-orange">ANI</span>
-          </span>
         </Link>
 
         <div className={`navbar__links ${isOpen ? 'navbar__links--open' : ''}`}>
