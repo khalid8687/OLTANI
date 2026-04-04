@@ -35,6 +35,7 @@
   height: 42px;
   width: auto;
   filter: drop-shadow(0 0 10px rgba(41, 128, 185, 0.3));
+  mix-blend-mode: screen;
 }
 
 .navbar__logo-text {
