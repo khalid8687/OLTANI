@@ -45,7 +45,7 @@ export default function ServiceCard({ icon, title, description, features, index,
         ))}
       </ul>
       <a
-        href="https://wa.me/201002194451"
+        href="https://wa.me/201098125573"
         target="_blank"
         rel="noopener noreferrer"
         className="btn btn-primary service-card__cta"

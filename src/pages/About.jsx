@@ -95,7 +95,7 @@ export default function About() {
               <h2 className="about-founder__name">{t.about.founderName}</h2>
               <p className="about-founder__desc">{t.about.founderDesc}</p>
               <a
-                href="https://wa.me/201002194451"
+                href="https://wa.me/201098125573"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-whatsapp"

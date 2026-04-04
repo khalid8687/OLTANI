@@ -99,7 +99,7 @@ export default function NetworkInfra() {
         <div className="sd-cta__content container">
           <h2 className="sd-cta__title">{t.serviceDetails.ctaTitle}</h2>
           <p className="sd-cta__subtitle">{t.serviceDetails.ctaSubtitle}</p>
-          <a href="https://wa.me/201002194451" target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+          <a href="https://wa.me/201098125573" target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
             <FaWhatsapp /> {t.serviceDetails.ctaBtn}
           </a>
         </div>

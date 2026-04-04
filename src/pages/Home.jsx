@@ -56,7 +56,7 @@ export default function Home() {
               <HiArrowRight className={lang === 'ar' ? 'flip-icon' : ''} />
             </Link>
             <a
-              href="https://wa.me/201002194451"
+              href="https://wa.me/201098125573"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-whatsapp"

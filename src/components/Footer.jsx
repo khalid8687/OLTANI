@@ -49,7 +49,7 @@ export default function Footer() {
           {/* Contact */}
           <div className="footer__col">
             <h4>{t.footer.getInTouch}</h4>
-            <a href="https://wa.me/201002194451" target="_blank" rel="noopener noreferrer" className="footer__whatsapp">
+            <a href="https://wa.me/201098125573" target="_blank" rel="noopener noreferrer" className="footer__whatsapp">
               <FaWhatsapp /> WhatsApp
             </a>
             <Link to="/contact">{t.nav.contact}</Link>

@@ -15,7 +15,7 @@ export default function Contact() {
     const msg = encodeURIComponent(
       `Hello OLTANI!%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
     );
-    window.open(`https://wa.me/201002194451?text=${msg}`, '_blank');
+    window.open(`https://wa.me/201098125573?text=${msg}`, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -42,7 +42,7 @@ export default function Contact() {
               <h2>{t.contact.whatsappTitle}</h2>
               <p>{t.contact.whatsappDesc}</p>
               <a
-                href="https://wa.me/201002194451"
+                href="https://wa.me/201098125573"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-whatsapp contact-whatsapp__btn"
@@ -104,12 +104,12 @@ export default function Contact() {
             <div className="contact-info__card glass-card">
               <FaPhone className="contact-info__icon" />
               <h4>{t.contact.phone}</h4>
-              <a href="tel:+201002194451">+20 100 219 4451</a>
+              <a href="tel:+201098125573">+20 109 812 5573</a>
             </div>
             <div className="contact-info__card glass-card">
               <FaWhatsapp className="contact-info__icon" style={{ color: '#25d366' }} />
               <h4>WhatsApp</h4>
-              <a href="https://wa.me/201002194451" target="_blank" rel="noopener noreferrer">+20 100 219 4451</a>
+              <a href="https://wa.me/201098125573" target="_blank" rel="noopener noreferrer">+20 109 812 5573</a>
             </div>
             <div className="contact-info__card glass-card">
               <FaMapMarkerAlt className="contact-info__icon" />
