@@ -6,6 +6,7 @@ import TransparentLogo from '../components/TransparentLogo';
 import { FaWhatsapp, FaVideo, FaLaptopCode, FaBullhorn, FaNetworkWired, FaServer } from 'react-icons/fa';
 import { HiArrowRight, HiSparkles } from 'react-icons/hi';
 import logo from '../assets/logo.png';
+import insideLogo from '../assets/inside_logo.png';
 import banner from '../assets/banner.png';
 import heroBg from '../assets/hero-bg.png';
 import serviceVideo from '../assets/service-video.png';
@@ -41,7 +42,7 @@ export default function Home() {
             <span>{t.hero.badge}</span>
           </div>
 
-          <TransparentLogo src={logo} alt="OLTANI" className="hero__logo" />
+          <img src={insideLogo} alt="OLTANI" className="hero__logo" />
 
           <h1 className="hero__title">
             {t.hero.title1}{' '}
