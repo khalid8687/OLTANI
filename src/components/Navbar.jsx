@@ -3,9 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { TbLanguage } from 'react-icons/tb';
-import TransparentLogo from './TransparentLogo';
 import logo from '../assets/logo.png';
-import logoTransparent from '../assets/logo_clean.png';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -36,7 +34,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="main-navbar">
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" id="nav-logo">
-          <img src={logoTransparent} alt="OLTANI" />
+          <img src={logo} alt="OLTANI" />
           <span className="navbar__logo-text">
             <span className="text-blue">OLT</span>
             <span className="text-orange">ANI</span>
