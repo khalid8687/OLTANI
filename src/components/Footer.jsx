@@ -3,7 +3,7 @@ import { useLang } from '../context/LanguageContext';
 import { FaWhatsapp, FaHeart } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi';
 import TransparentLogo from './TransparentLogo';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import './Footer.css';
 
 export default function Footer() {

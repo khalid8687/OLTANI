@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { FaVideo, FaLaptopCode, FaBullhorn, FaNetworkWired, FaServer, FaWhatsapp } from 'react-icons/fa';
 import { HiCheckCircle, HiArrowRight } from 'react-icons/hi';
-import serviceVideo from '../assets/service-video.png';
-import serviceSoftware from '../assets/service-software.png';
-import serviceSocial from '../assets/service-social.png';
-import serviceIntegration from '../assets/service-integration.png';
-import serviceNetwork from '../assets/service-network.png';
+import serviceVideo from '../assets/service-video.webp';
+import serviceSoftware from '../assets/service-software.webp';
+import serviceSocial from '../assets/service-social.webp';
+import serviceIntegration from '../assets/service-integration.webp';
+import serviceNetwork from '../assets/service-network.webp';
 import './Services.css';
 
 const serviceRoutes = [

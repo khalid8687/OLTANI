@@ -3,12 +3,12 @@ import { useLang } from '../context/LanguageContext';
 import { FaLaptopCode, FaWhatsapp } from 'react-icons/fa';
 import { HiArrowLeft, HiSparkles } from 'react-icons/hi';
 import AnimatedCounter from '../components/AnimatedCounter';
-import imgCrm from '../assets/services/software_crm_erp.png';
-import imgFinance from '../assets/services/software_finance.png';
-import imgClinic from '../assets/services/software_clinic.png';
-import imgRestaurant from '../assets/services/software_restaurant.png';
-import imgRetail from '../assets/services/software_retail.png';
-import imgChatbot from '../assets/services/software_chatbot.png';
+import imgCrm from '../assets/services/software_crm_erp.webp';
+import imgFinance from '../assets/services/software_finance.webp';
+import imgClinic from '../assets/services/software_clinic.webp';
+import imgRestaurant from '../assets/services/software_restaurant.webp';
+import imgRetail from '../assets/services/software_retail.webp';
+import imgChatbot from '../assets/services/software_chatbot.webp';
 import './ServiceDetail.css';
 
 const images = [imgCrm, imgFinance, imgClinic, imgRestaurant, imgRetail, imgChatbot];

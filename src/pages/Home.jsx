@@ -1,19 +1,19 @@
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
-import ParticleNetwork from '../components/ParticleNetwork';
+const ParticleNetwork = lazy(() => import('../components/ParticleNetwork'));
 import AnimatedCounter from '../components/AnimatedCounter';
-import TransparentLogo from '../components/TransparentLogo';
 import { FaWhatsapp, FaVideo, FaLaptopCode, FaBullhorn, FaNetworkWired, FaServer } from 'react-icons/fa';
 import { HiArrowRight, HiSparkles } from 'react-icons/hi';
-import logo from '../assets/logo.png';
-import insideLogo from '../assets/inside_logo.png';
-import banner from '../assets/banner.png';
-import heroBg from '../assets/hero-bg.png';
-import serviceVideo from '../assets/service-video.png';
-import serviceSoftware from '../assets/service-software.png';
-import serviceSocial from '../assets/service-social.png';
-import serviceIntegration from '../assets/service-integration.png';
-import serviceNetwork from '../assets/service-network.png';
+import logo from '../assets/logo.webp';
+import insideLogo from '../assets/inside_logo.webp';
+import banner from '../assets/banner.webp';
+import heroBg from '../assets/hero-bg.webp';
+import serviceVideo from '../assets/service-video.webp';
+import serviceSoftware from '../assets/service-software.webp';
+import serviceSocial from '../assets/service-social.webp';
+import serviceIntegration from '../assets/service-integration.webp';
+import serviceNetwork from '../assets/service-network.webp';
 import './Home.css';
 
 export default function Home() {
@@ -32,9 +32,9 @@ export default function Home() {
       {/* Hero */}
       <section className="hero" id="hero-section">
         <div className="hero__bg-image">
-          <img src={heroBg} alt="" aria-hidden="true" />
+          <img src={heroBg} alt="" aria-hidden="true" fetchpriority="high" />
         </div>
-        <ParticleNetwork />
+        <Suspense fallback={null}><ParticleNetwork /></Suspense>
         <div className="hero__overlay" />
         <div className="hero__content container">
           <div className="hero__badge">
@@ -112,7 +112,7 @@ export default function Home() {
               return (
               <Link to={routes[i]} key={i} className="home-service-card" style={{ animationDelay: `${i * 0.15}s` }}>
                 <div className="home-service-card__image">
-                  <img src={s.image} alt={s.title} />
+                  <img src={s.image} alt={s.title} loading="lazy" />
                   <div className="home-service-card__image-overlay" />
                 </div>
                 <div className="home-service-card__body">
@@ -137,7 +137,7 @@ export default function Home() {
       {/* Banner Showcase */}
       <section className="home-banner" id="home-banner">
         <div className="home-banner__bg">
-          <img src={banner} alt="OLTANI Services" />
+          <img src={banner} alt="OLTANI Services" loading="lazy" />
         </div>
         <div className="home-banner__overlay" />
         <div className="home-banner__content container">

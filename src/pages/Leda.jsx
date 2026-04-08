@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { FaFacebook, FaQuoteLeft } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
-import leda from '../assets/leda.png';
+import leda from '../assets/leda.webp';
 import './Leda.css';
 
 export default function Leda() {

@@ -3,12 +3,12 @@ import { useLang } from '../context/LanguageContext';
 import { FaBullhorn, FaWhatsapp } from 'react-icons/fa';
 import { HiArrowLeft, HiSparkles } from 'react-icons/hi';
 import AnimatedCounter from '../components/AnimatedCounter';
-import imgBranding from '../assets/services/social_branding.png';
-import imgContent from '../assets/services/social_content.png';
-import imgAds from '../assets/services/social_ads.png';
-import imgGrowth from '../assets/services/social_growth.png';
-import imgAnalytics from '../assets/services/social_analytics.png';
-import imgSales from '../assets/services/social_sales.png';
+import imgBranding from '../assets/services/social_branding.webp';
+import imgContent from '../assets/services/social_content.webp';
+import imgAds from '../assets/services/social_ads.webp';
+import imgGrowth from '../assets/services/social_growth.webp';
+import imgAnalytics from '../assets/services/social_analytics.webp';
+import imgSales from '../assets/services/social_sales.webp';
 import './ServiceDetail.css';
 
 const images = [imgBranding, imgContent, imgAds, imgGrowth, imgAnalytics, imgSales];

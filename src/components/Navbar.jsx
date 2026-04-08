@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { TbLanguage } from 'react-icons/tb';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import './Navbar.css';
 
 export default function Navbar() {

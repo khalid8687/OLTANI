@@ -3,10 +3,10 @@ import { useLang } from '../context/LanguageContext';
 import { FaVideo, FaWhatsapp } from 'react-icons/fa';
 import { HiArrowLeft, HiSparkles } from 'react-icons/hi';
 import AnimatedCounter from '../components/AnimatedCounter';
-import videoCorporate from '../assets/services/video_corporate.png';
-import videoSocial from '../assets/services/video_social_viral.png';
-import video3d from '../assets/services/video_3d_cartoon.png';
-import videoReels from '../assets/services/video_reels.png';
+import videoCorporate from '../assets/services/video_corporate.webp';
+import videoSocial from '../assets/services/video_social_viral.webp';
+import video3d from '../assets/services/video_3d_cartoon.webp';
+import videoReels from '../assets/services/video_reels.webp';
 import './ServiceDetail.css';
 
 const images = [videoCorporate, videoSocial, video3d, videoReels];

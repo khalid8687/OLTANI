@@ -3,17 +3,17 @@ import { useLang } from '../context/LanguageContext';
 import { FaServer, FaWhatsapp } from 'react-icons/fa';
 import { HiArrowLeft, HiSparkles } from 'react-icons/hi';
 import AnimatedCounter from '../components/AnimatedCounter';
-import imgDesign from '../assets/services/network_design.png';
-import imgHardware from '../assets/services/network_hardware.png';
-import imgBranch from '../assets/services/network_branch.png';
-import imgInfra from '../assets/services/network_infrastructure.png';
-import imgMonitor from '../assets/services/network_monitoring.png';
-import imgGlobal from '../assets/services/network_global.png';
-import imgBranchInter from '../assets/services/network_branch_inter.png';
-import imgVoip from '../assets/services/network_voip.png';
-import imgCyber from '../assets/services/network_cybersecurity.png';
-import imgDomains from '../assets/services/network_domains.png';
-import imgBackup from '../assets/services/network_backup.png';
+import imgDesign from '../assets/services/network_design.webp';
+import imgHardware from '../assets/services/network_hardware.webp';
+import imgBranch from '../assets/services/network_branch.webp';
+import imgInfra from '../assets/services/network_infrastructure.webp';
+import imgMonitor from '../assets/services/network_monitoring.webp';
+import imgGlobal from '../assets/services/network_global.webp';
+import imgBranchInter from '../assets/services/network_branch_inter.webp';
+import imgVoip from '../assets/services/network_voip.webp';
+import imgCyber from '../assets/services/network_cybersecurity.webp';
+import imgDomains from '../assets/services/network_domains.webp';
+import imgBackup from '../assets/services/network_backup.webp';
 import './ServiceDetail.css';
 
 const images = [

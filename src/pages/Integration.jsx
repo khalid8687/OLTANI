@@ -3,12 +3,12 @@ import { useLang } from '../context/LanguageContext';
 import { FaNetworkWired, FaWhatsapp } from 'react-icons/fa';
 import { HiArrowLeft, HiSparkles } from 'react-icons/hi';
 import AnimatedCounter from '../components/AnimatedCounter';
-import imgCross from '../assets/services/integration_cross.png';
-import imgApi from '../assets/services/integration_api.png';
-import imgMigration from '../assets/services/integration_migration.png';
-import imgMulti from '../assets/services/integration_multiplatform.png';
-import imgMiddleware from '../assets/services/integration_middleware.png';
-import imgIndustry from '../assets/services/integration_industry.png';
+import imgCross from '../assets/services/integration_cross.webp';
+import imgApi from '../assets/services/integration_api.webp';
+import imgMigration from '../assets/services/integration_migration.webp';
+import imgMulti from '../assets/services/integration_multiplatform.webp';
+import imgMiddleware from '../assets/services/integration_middleware.webp';
+import imgIndustry from '../assets/services/integration_industry.webp';
 import './ServiceDetail.css';
 
 const images = [imgCross, imgApi, imgMigration, imgMulti, imgMiddleware, imgIndustry];
