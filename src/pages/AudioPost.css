@@ -16,17 +16,17 @@
   background-repeat: no-repeat;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.12;
-  filter: brightness(0.6) saturate(0.4);
+  opacity: 0.35;
+  filter: brightness(0.8) saturate(0.6);
 }
 
 .ap-bg-overlay {
   position: fixed;
   inset: 0;
   background: linear-gradient(160deg,
-    rgba(5,10,20,0.85) 0%,
-    rgba(5,10,20,0.7) 40%,
-    rgba(5,10,20,0.92) 100%
+    rgba(5,10,20,0.6) 0%,
+    rgba(5,10,20,0.4) 40%,
+    rgba(5,10,20,0.75) 100%
   );
   z-index: 1;
   pointer-events: none;
