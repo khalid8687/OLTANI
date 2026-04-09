@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -17,6 +17,9 @@ const NetworkInfra = lazy(() => import('./pages/NetworkInfra'));
 const About = lazy(() => import('./pages/About'));
 const Leda = lazy(() => import('./pages/Leda'));
 const Contact = lazy(() => import('./pages/Contact'));
+// New pages — no Navbar/Footer wrapper
+const AudioPost = lazy(() => import('./pages/AudioPost'));
+const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 
 // Minimal loading spinner
 function PageLoader() {
@@ -39,12 +42,18 @@ function PageLoader() {
   );
 }
 
+// Pages that get their own full-screen layout (no Navbar/Footer)
+const STANDALONE_ROUTES = ['/leda/post/', '/admin'];
+
 function App() {
+  const location = useLocation();
+  const isStandalone = STANDALONE_ROUTES.some((r) => location.pathname.startsWith(r));
+
   return (
     <div className="app">
       <ScrollToTop />
-      <Navbar />
-      <main className="main-content">
+      {!isStandalone && <Navbar />}
+      <main className={isStandalone ? '' : 'main-content'}>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -56,14 +65,17 @@ function App() {
             <Route path="/services/network" element={<NetworkInfra />} />
             <Route path="/about" element={<About />} />
             <Route path="/leda" element={<Leda />} />
+            <Route path="/leda/post/:id" element={<AudioPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<AdminPanel />} />
           </Routes>
         </Suspense>
       </main>
-      <Footer />
-      <WhatsAppButton />
+      {!isStandalone && <Footer />}
+      {!isStandalone && <WhatsAppButton />}
     </div>
   );
 }
 
 export default App;
+
