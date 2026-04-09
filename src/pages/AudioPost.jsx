@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa';
 import { MdSpeed, MdReplay, MdSpeed as MdSpeedOff } from 'react-icons/md';
 import logo from '../assets/logo.webp';
+import mosqueBg from '../assets/leda-mosque.jpeg';
 import './AudioPost.css';
 
 const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -213,10 +214,8 @@ export default function AudioPost() {
 
   return (
     <div className="audio-post-page" dir={isRtl ? 'rtl' : 'ltr'}>
-      {/* Blurred background */}
-      {post.imageUrl && (
-        <div className="ap-bg-blur" style={{ backgroundImage: `url(${post.imageUrl})` }} />
-      )}
+      {/* Mosque background */}
+      <div className="ap-bg-mosque" style={{ backgroundImage: `url(${mosqueBg})` }} />
       <div className="ap-bg-overlay" />
 
       {/* Header */}
