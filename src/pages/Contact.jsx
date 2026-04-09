@@ -25,12 +25,6 @@ export default function Contact() {
         createdAt: serverTimestamp(),
       });
 
-      // Also open WhatsApp
-      const msg = encodeURIComponent(
-        `Hello OLTANI!%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
-      );
-      window.open(`https://wa.me/201098125573?text=${msg}`, '_blank');
-
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setSubmitted(false), 3000);
