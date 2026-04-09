@@ -2,22 +2,43 @@ import { useState } from 'react';
 import { useLang } from '../context/LanguageContext';
 import { FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { HiPaperAirplane } from 'react-icons/hi';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 import './Contact.css';
 
 export default function Contact() {
   const { t } = useLang();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Build WhatsApp message
-    const msg = encodeURIComponent(
-      `Hello OLTANI!%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
-    );
-    window.open(`https://wa.me/201098125573?text=${msg}`, '_blank');
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSending(true);
+    try {
+      // Save to Firestore
+      await addDoc(collection(db, 'messages'), {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+        read: false,
+        createdAt: serverTimestamp(),
+      });
+
+      // Also open WhatsApp
+      const msg = encodeURIComponent(
+        `Hello OLTANI!%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
+      );
+      window.open(`https://wa.me/201098125573?text=${msg}`, '_blank');
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err) {
+      console.error('Failed to send message:', err);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -87,8 +108,8 @@ export default function Contact() {
                     id="contact-message"
                   />
                 </div>
-                <button type="submit" className={`btn btn-primary contact-form__submit ${submitted ? 'submitted' : ''}`} id="contact-submit">
-                  {submitted ? '✓' : (
+                <button type="submit" className={`btn btn-primary contact-form__submit ${submitted ? 'submitted' : ''}`} id="contact-submit" disabled={sending}>
+                  {submitted ? '✓' : sending ? '...' : (
                     <>
                       <HiPaperAirplane />
                       {t.contact.send}

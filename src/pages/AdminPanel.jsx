@@ -10,6 +10,7 @@ import { db, auth } from '../firebase';
 import {
   FaTrash, FaEdit, FaSave, FaTimes, FaPlus, FaSignOutAlt,
   FaMusic, FaImage, FaLink, FaPlay, FaExternalLinkAlt,
+  FaEnvelope, FaEye, FaCheck,
 } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi';
 import logo from '../assets/logo.webp';
@@ -342,13 +343,18 @@ export default function AdminPanel() {
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [deleting, setDeleting] = useState(null);
 
+  // Messages state
+  const [activeTab, setActiveTab] = useState('posts'); // 'posts' | 'messages'
+  const [messages, setMessages] = useState([]);
+  const [loadingMessages, setLoadingMessages] = useState(false);
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => setUser(u ?? null));
     return unsub;
   }, []);
 
   useEffect(() => {
-    if (user) fetchPosts();
+    if (user) { fetchPosts(); fetchMessages(); }
   }, [user]);
 
   const fetchPosts = async () => {
@@ -377,6 +383,41 @@ export default function AdminPanel() {
     }
   };
 
+  // ── Messages CRUD ──
+  const fetchMessages = async () => {
+    setLoadingMessages(true);
+    try {
+      const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+      const snap = await getDocs(q);
+      setMessages(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+    } catch (err) {
+      console.error('Failed to load messages:', err);
+    } finally {
+      setLoadingMessages(false);
+    }
+  };
+
+  const markAsRead = async (msg) => {
+    try {
+      await updateDoc(doc(db, 'messages', msg.id), { read: true });
+      setMessages((prev) => prev.map((m) => m.id === msg.id ? { ...m, read: true } : m));
+    } catch (err) {
+      console.error('Failed to mark as read:', err);
+    }
+  };
+
+  const deleteMessage = async (msg) => {
+    if (!window.confirm('Delete this message?')) return;
+    try {
+      await deleteDoc(doc(db, 'messages', msg.id));
+      setMessages((prev) => prev.filter((m) => m.id !== msg.id));
+    } catch (err) {
+      alert('Delete failed: ' + err.message);
+    }
+  };
+
+  const unreadCount = messages.filter((m) => !m.read).length;
+
   // Auth loading
   if (user === undefined) {
     return <div className="adm-loading"><div className="adm-spinner" /></div>;
@@ -395,7 +436,7 @@ export default function AdminPanel() {
             <span className="text-blue">OLT</span><span className="text-orange">ANI</span>
           </span>
           <span className="adm-topbar__sep">|</span>
-          <span className="adm-topbar__name"><HiSparkles /> Leda Tube Admin</span>
+          <span className="adm-topbar__name"><HiSparkles /> OLTANI Admin</span>
         </div>
         <div className="adm-topbar__actions">
           <span className="adm-user-email">{user.email}</span>
@@ -406,6 +447,7 @@ export default function AdminPanel() {
       </header>
 
       <div className="adm-body container">
+        {/* Stats */}
         <div className="adm-stats">
           <div className="adm-stat">
             <span className="adm-stat__num">{posts.length}</span>
@@ -415,8 +457,32 @@ export default function AdminPanel() {
             <span className="adm-stat__num">{posts.reduce((a, p) => a + (p.plays || 0), 0)}</span>
             <span className="adm-stat__label">Total Plays</span>
           </div>
+          <div className="adm-stat">
+            <span className="adm-stat__num">{messages.length}</span>
+            <span className="adm-stat__label">Messages</span>
+          </div>
         </div>
 
+        {/* Tab switcher */}
+        <div className="adm-tabs">
+          <button
+            className={`adm-tab ${activeTab === 'posts' ? 'adm-tab--active' : ''}`}
+            onClick={() => setActiveTab('posts')}
+          >
+            <FaMusic /> Audio Posts
+          </button>
+          <button
+            className={`adm-tab ${activeTab === 'messages' ? 'adm-tab--active' : ''}`}
+            onClick={() => setActiveTab('messages')}
+          >
+            <FaEnvelope /> Messages
+            {unreadCount > 0 && <span className="adm-tab-badge">{unreadCount}</span>}
+          </button>
+        </div>
+
+        {/* ─── Posts Tab ─── */}
+        {activeTab === 'posts' && (
+          <>
         <div className="adm-toolbar">
           <h2 className="adm-section-title">Audio Posts</h2>
           <button
@@ -480,6 +546,63 @@ export default function AdminPanel() {
               </div>
             )
         }
+          </>
+        )}
+
+        {/* ─── Messages Tab ─── */}
+        {activeTab === 'messages' && (
+          <>
+            <div className="adm-toolbar">
+              <h2 className="adm-section-title">Contact Messages</h2>
+              <button className="btn btn-outline" onClick={fetchMessages}>
+                Refresh
+              </button>
+            </div>
+
+            {loadingMessages
+              ? <div className="adm-loading-inline"><div className="adm-spinner" /></div>
+              : messages.length === 0
+                ? (
+                  <div className="adm-empty">
+                    <FaEnvelope size={48} />
+                    <p>No messages yet.</p>
+                  </div>
+                )
+                : (
+                  <div className="adm-messages-list">
+                    {messages.map((msg) => (
+                      <div key={msg.id} className={`adm-msg-card ${msg.read ? '' : 'adm-msg-card--unread'}`}>
+                        <div className="adm-msg-card__header">
+                          <div className="adm-msg-card__sender">
+                            {!msg.read && <span className="adm-msg-dot" />}
+                            <strong>{msg.name}</strong>
+                            <span className="adm-msg-email">{msg.email}</span>
+                          </div>
+                          <span className="adm-msg-date">
+                            {msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleString() : '—'}
+                          </span>
+                        </div>
+                        <p className="adm-msg-card__body">{msg.message}</p>
+                        <div className="adm-msg-card__actions">
+                          {!msg.read && (
+                            <button className="adm-icon-btn adm-read-btn" onClick={() => markAsRead(msg)} title="Mark as read">
+                              <FaCheck />
+                            </button>
+                          )}
+                          <a href={`mailto:${msg.email}`} className="adm-icon-btn adm-reply-btn" title="Reply by email">
+                            <FaEnvelope />
+                          </a>
+                          <button className="adm-icon-btn adm-del-btn" onClick={() => deleteMessage(msg)} title="Delete">
+                            <FaTrash />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )
+            }
+          </>
+        )}
       </div>
 
       {showModal && (
