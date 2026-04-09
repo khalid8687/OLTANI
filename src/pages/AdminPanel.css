@@ -454,3 +454,49 @@
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Saving badge — shows current upload stage */
+.adm-saving-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(41,128,185,0.1);
+  border: 1px solid rgba(41,128,185,0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9rem;
+  color: var(--blue-300);
+}
+
+/* Upload progress wrapper with label */
+.adm-upload-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.adm-upload-label {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+
+/* Cloud badge in topbar */
+.adm-cloud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: var(--blue-400);
+  background: rgba(41,128,185,0.1);
+  border: 1px solid rgba(41,128,185,0.25);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  font-weight: 600;
+}
+
+/* Extra-small spinner */
+.adm-spinner--xs {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
