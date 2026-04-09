@@ -7,46 +7,37 @@ import {
   signInWithEmailAndPassword, signOut, onAuthStateChanged,
 } from 'firebase/auth';
 import { db, auth } from '../firebase';
-import { FaTrash, FaEdit, FaSave, FaTimes, FaPlus, FaSignOutAlt, FaMusic, FaImage, FaCloud } from 'react-icons/fa';
+import {
+  FaTrash, FaEdit, FaSave, FaTimes, FaPlus, FaSignOutAlt,
+  FaMusic, FaImage, FaLink, FaPlay, FaExternalLinkAlt,
+} from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi';
 import logo from '../assets/logo.webp';
 import './AdminPanel.css';
 
-// ── Cloudinary config (unsigned upload — safe for frontend) ──
+// ── Cloudinary config (images only — small bandwidth) ────────
 const CLOUD_NAME = 'dgucoutmf';
 const UPLOAD_PRESET = 'ml_default';
 
-/**
- * Upload a file to Cloudinary using unsigned upload preset.
- * resourceType: 'image' for images, 'video' for audio/video files.
- */
-const uploadToCloudinary = (file, resourceType, onProgress) =>
+const uploadImageToCloudinary = (file, onProgress) =>
   new Promise((resolve, reject) => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', UPLOAD_PRESET);
 
     const xhr = new XMLHttpRequest();
-
     xhr.upload.onprogress = (e) => {
-      if (e.lengthComputable) {
-        onProgress(Math.round((e.loaded / e.total) * 100));
-      }
+      if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100));
     };
-
     xhr.onload = () => {
       if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        resolve(data.secure_url);
+        resolve(JSON.parse(xhr.responseText).secure_url);
       } else {
-        let msg = `Upload failed (${xhr.status})`;
-        try { msg = JSON.parse(xhr.responseText)?.error?.message || msg; } catch {}
-        reject(new Error(msg));
+        reject(new Error('Image upload failed'));
       }
     };
-
-    xhr.onerror = () => reject(new Error('Network error — check your internet connection'));
-    xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${resourceType}/upload`);
+    xhr.onerror = () => reject(new Error('Network error'));
+    xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`);
     xhr.send(formData);
   });
 
@@ -54,7 +45,7 @@ const uploadToCloudinary = (file, resourceType, onProgress) =>
 function UploadProgress({ pct, label }) {
   return (
     <div className="adm-upload-wrap">
-      <span className="adm-upload-label">{label}</span>
+      {label && <span className="adm-upload-label">{label}</span>}
       <div className="adm-upload-bar">
         <div className="adm-upload-fill" style={{ width: `${pct}%` }} />
         <span>{Math.round(pct)}%</span>
@@ -119,16 +110,16 @@ function LoginScreen() {
 function PostModal({ editPost, onClose, onSaved }) {
   const [title, setTitle] = useState(editPost?.title || '');
   const [caption, setCaption] = useState(editPost?.caption || '');
+  const [audioUrl, setAudioUrl] = useState(editPost?.audioUrl || '');
   const [imageFile, setImageFile] = useState(null);
-  const [audioFile, setAudioFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(editPost?.imageUrl || '');
   const [imgPct, setImgPct] = useState(0);
-  const [audPct, setAudPct] = useState(0);
   const [saving, setSaving] = useState(false);
-  const [uploadStage, setUploadStage] = useState(''); // 'image' | 'audio' | 'saving'
+  const [uploadStage, setUploadStage] = useState('');
   const [error, setError] = useState('');
+  const [testingAudio, setTestingAudio] = useState(false);
+  const testAudioRef = useRef(null);
 
-  const audioInputRef = useRef();
   const imageInputRef = useRef();
 
   const handleImage = (e) => {
@@ -138,46 +129,68 @@ function PostModal({ editPost, onClose, onSaved }) {
     setImagePreview(URL.createObjectURL(f));
   };
 
+  // Test if audio URL is valid & playable
+  const testAudio = () => {
+    if (!audioUrl.trim()) return;
+    setTestingAudio(true);
+    if (testAudioRef.current) {
+      testAudioRef.current.pause();
+      testAudioRef.current = null;
+    }
+    const a = new Audio(audioUrl.trim());
+    testAudioRef.current = a;
+    a.oncanplay = () => {
+      a.play().catch(() => {});
+      setTestingAudio(false);
+    };
+    a.onerror = () => {
+      setError('Audio URL is invalid or not accessible. Make sure it is a direct link to an audio file.');
+      setTestingAudio(false);
+    };
+    setTimeout(() => setTestingAudio(false), 8000);
+  };
+
+  // Cleanup test audio on unmount
+  useEffect(() => {
+    return () => {
+      if (testAudioRef.current) {
+        testAudioRef.current.pause();
+        testAudioRef.current = null;
+      }
+    };
+  }, []);
+
   const handleSave = async (e) => {
     e.preventDefault();
     if (!title.trim()) { setError('Title is required'); return; }
-    if (!editPost && !audioFile) { setError('Audio file is required'); return; }
+    if (!audioUrl.trim() && !editPost?.audioUrl) { setError('Audio URL is required'); return; }
     setSaving(true);
     setError('');
 
     try {
       let imageUrl = editPost?.imageUrl || '';
-      let audioUrl = editPost?.audioUrl || '';
 
-      // 1. Upload image to Cloudinary
+      // Upload image to Cloudinary (small file — no bandwidth issue)
       if (imageFile) {
         setUploadStage('image');
         setImgPct(0);
-        imageUrl = await uploadToCloudinary(imageFile, 'image', setImgPct);
+        imageUrl = await uploadImageToCloudinary(imageFile, setImgPct);
       }
 
-      // 2. Upload audio to Cloudinary (resource_type = 'video' handles audio too)
-      if (audioFile) {
-        setUploadStage('audio');
-        setAudPct(0);
-        audioUrl = await uploadToCloudinary(audioFile, 'video', setAudPct);
-      }
-
-      // 3. Save to Firestore
+      // Save to Firestore
       setUploadStage('saving');
+      const postData = {
+        title: title.trim(),
+        caption: caption.trim(),
+        imageUrl,
+        audioUrl: audioUrl.trim() || editPost?.audioUrl || '',
+      };
+
       if (editPost) {
-        await updateDoc(doc(db, 'posts', editPost.id), {
-          title: title.trim(),
-          caption: caption.trim(),
-          imageUrl,
-          audioUrl,
-        });
+        await updateDoc(doc(db, 'posts', editPost.id), postData);
       } else {
         await addDoc(collection(db, 'posts'), {
-          title: title.trim(),
-          caption: caption.trim(),
-          imageUrl,
-          audioUrl,
+          ...postData,
           plays: 0,
           createdAt: serverTimestamp(),
         });
@@ -191,13 +204,6 @@ function PostModal({ editPost, onClose, onSaved }) {
       setUploadStage('');
     }
   };
-
-  const uploadStatusLabel = {
-    image: 'Uploading image…',
-    audio: 'Uploading audio…',
-    saving: 'Saving post…',
-    '': '',
-  }[uploadStage];
 
   return (
     <div className="adm-modal-overlay" onClick={onClose}>
@@ -230,8 +236,10 @@ function PostModal({ editPost, onClose, onSaved }) {
             disabled={saving}
           />
 
-          {/* Image upload */}
-          <label className="adm-label">Cover Image {editPost?.imageUrl ? '(leave empty to keep current)' : '(optional)'}</label>
+          {/* Cover Image (Cloudinary) */}
+          <label className="adm-label">
+            Cover Image {editPost?.imageUrl ? '(leave empty to keep current)' : '(optional)'}
+          </label>
           <div className="adm-file-row">
             <button
               type="button"
@@ -245,37 +253,67 @@ function PostModal({ editPost, onClose, onSaved }) {
             {imagePreview && <img src={imagePreview} alt="" className="adm-img-thumb" />}
           </div>
           {uploadStage === 'image' && imgPct > 0 && (
-            <UploadProgress pct={imgPct} label="Uploading image to Cloudinary…" />
+            <UploadProgress pct={imgPct} label="Uploading image…" />
           )}
 
-          {/* Audio upload */}
-          <label className="adm-label">Audio File {editPost ? '(leave empty to keep current)' : '*'}</label>
-          <div className="adm-file-row">
+          {/* Audio URL (external link — archive.org, Google Drive, etc.) */}
+          <label className="adm-label">
+            Audio URL * {editPost?.audioUrl ? '(leave empty to keep current)' : ''}
+          </label>
+          <div className="adm-help-text">
+            Upload your audio to <a href="https://archive.org/create" target="_blank" rel="noopener noreferrer">archive.org</a> and paste the direct link here.
+            The audio will play inside your OLTANI website.
+          </div>
+          <div className="adm-url-row">
+            <div className="adm-url-input-wrap">
+              <FaLink className="adm-url-icon" />
+              <input
+                className="adm-input adm-url-input"
+                value={audioUrl}
+                onChange={(e) => setAudioUrl(e.target.value)}
+                placeholder="https://archive.org/download/your-item/audio.mp3"
+                disabled={saving}
+                type="url"
+              />
+            </div>
             <button
               type="button"
-              className="adm-file-btn"
-              onClick={() => audioInputRef.current.click()}
-              disabled={saving}
+              className="adm-test-btn"
+              onClick={testAudio}
+              disabled={saving || testingAudio || !audioUrl.trim()}
+              title="Test if audio plays"
             >
-              <FaMusic /> {audioFile ? audioFile.name : 'Choose Audio (.mp3, .m4a, .wav…)'}
+              {testingAudio ? <div className="adm-spinner adm-spinner--xs" /> : <FaPlay />}
+              <span>Test</span>
             </button>
-            <input
-              ref={audioInputRef}
-              type="file"
-              accept="audio/*,.mp3,.m4a,.wav,.aac,.ogg,.flac"
-              onChange={(e) => setAudioFile(e.target.files[0])}
-              hidden
-            />
           </div>
-          {uploadStage === 'audio' && audPct > 0 && (
-            <UploadProgress pct={audPct} label="Uploading audio to Cloudinary…" />
+          {editPost?.audioUrl && !audioUrl.trim() && (
+            <div className="adm-current-url">
+              <FaLink /> Current: <span>{editPost.audioUrl.length > 60 ? editPost.audioUrl.slice(0, 60) + '…' : editPost.audioUrl}</span>
+            </div>
           )}
 
-          {/* Status badge while saving */}
-          {saving && uploadStatusLabel && (
+          {/* Archive.org guide */}
+          <details className="adm-guide">
+            <summary><HiSparkles /> How to get a free audio URL from Archive.org</summary>
+            <ol className="adm-guide-steps">
+              <li>Go to <a href="https://archive.org/create" target="_blank" rel="noopener noreferrer">archive.org/create <FaExternalLinkAlt /></a></li>
+              <li>Create a free account (if you don't have one)</li>
+              <li>Click <strong>"Upload Files"</strong> and select your audio</li>
+              <li>Fill in a title and click <strong>"Upload"</strong></li>
+              <li>After upload, on the item page, <strong>right-click</strong> on the audio file → <strong>"Copy link address"</strong></li>
+              <li>Paste the link in the Audio URL field above ✅</li>
+            </ol>
+            <p className="adm-guide-tip">
+              💡 The link should look like: <code>https://archive.org/download/item-name/file.mp3</code>
+            </p>
+          </details>
+
+          {/* Status */}
+          {saving && (
             <div className="adm-saving-badge">
               <div className="adm-spinner" />
-              <span>{uploadStatusLabel}</span>
+              <span>{uploadStage === 'image' ? 'Uploading image…' : 'Saving post…'}</span>
             </div>
           )}
 
@@ -286,7 +324,7 @@ function PostModal({ editPost, onClose, onSaved }) {
               Cancel
             </button>
             <button type="submit" className="btn btn-primary" disabled={saving}>
-              <FaSave /> {saving ? uploadStatusLabel || 'Processing…' : 'Save Post'}
+              <FaSave /> {saving ? 'Saving…' : 'Save Post'}
             </button>
           </div>
         </form>
@@ -297,7 +335,7 @@ function PostModal({ editPost, onClose, onSaved }) {
 
 // ── Main Admin Panel ───────────────────────────────────────────
 export default function AdminPanel() {
-  const [user, setUser] = useState(undefined); // undefined = checking auth
+  const [user, setUser] = useState(undefined);
   const [posts, setPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [editPost, setEditPost] = useState(null);
@@ -331,7 +369,6 @@ export default function AdminPanel() {
     setDeleting(post.id);
     try {
       await deleteDoc(doc(db, 'posts', post.id));
-      // Note: Cloudinary files remain (can be cleaned from Cloudinary dashboard)
       setPosts((prev) => prev.filter((p) => p.id !== post.id));
     } catch (err) {
       alert('Delete failed: ' + err.message);
@@ -340,22 +377,17 @@ export default function AdminPanel() {
     }
   };
 
-  // ── Auth loading ─────────────────────────────────────────────
+  // Auth loading
   if (user === undefined) {
-    return (
-      <div className="adm-loading">
-        <div className="adm-spinner" />
-      </div>
-    );
+    return <div className="adm-loading"><div className="adm-spinner" /></div>;
   }
 
-  // ── Login screen ─────────────────────────────────────────────
+  // Login
   if (!user) return <LoginScreen />;
 
-  // ── Dashboard ────────────────────────────────────────────────
+  // Dashboard
   return (
     <div className="admin-panel">
-      {/* Topbar */}
       <header className="adm-topbar">
         <div className="adm-topbar__brand">
           <img src={logo} alt="OLTANI" />
@@ -366,7 +398,6 @@ export default function AdminPanel() {
           <span className="adm-topbar__name"><HiSparkles /> Leda Tube Admin</span>
         </div>
         <div className="adm-topbar__actions">
-          <span className="adm-cloud-badge"><FaCloud /> Cloudinary</span>
           <span className="adm-user-email">{user.email}</span>
           <button className="adm-icon-btn adm-signout" onClick={() => signOut(auth)} title="Sign Out">
             <FaSignOutAlt />
@@ -375,7 +406,6 @@ export default function AdminPanel() {
       </header>
 
       <div className="adm-body container">
-        {/* Stats */}
         <div className="adm-stats">
           <div className="adm-stat">
             <span className="adm-stat__num">{posts.length}</span>
@@ -387,7 +417,6 @@ export default function AdminPanel() {
           </div>
         </div>
 
-        {/* Toolbar */}
         <div className="adm-toolbar">
           <h2 className="adm-section-title">Audio Posts</h2>
           <button
@@ -398,7 +427,6 @@ export default function AdminPanel() {
           </button>
         </div>
 
-        {/* Posts list */}
         {loadingPosts
           ? <div className="adm-loading-inline"><div className="adm-spinner" /></div>
           : posts.length === 0
@@ -454,7 +482,6 @@ export default function AdminPanel() {
         }
       </div>
 
-      {/* Modal */}
       {showModal && (
         <PostModal
           editPost={editPost}
